@@ -1,4 +1,4 @@
-/* This file contains coding notes for week 1 of Coursera's Functional Programming in Scala - Functional Programming Principles */
+/* This file contains practice code for week 1 */
 
 object session {
   // Square root function using the Newtonian method
