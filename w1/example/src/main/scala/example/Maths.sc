@@ -1,26 +1,38 @@
 /* This file contains coding notes for week 1 of Coursera's Functional Programming in Scala - Functional Programming Principles */
 
-
 object session {
   // Square root function using the Newtonian method
-
   def abs(x: Double) = if (x < 0) -x else x
 
-  def isGoodEnough(guess: Double, x: Double) =
-    abs(guess * guess - x) / x < 0.001
+  // Greatest common denominator using Euclidian method
+  def gcd(a: Int, b: Int): Int =
+    if (b==0) a else gcd(b, a % b)
 
-  def improve(guess: Double, x: Double) =
-    (guess + x / guess) / 2
+  // Factorial
+  def factorial(n: Long): Long =
+    if (n==0) 1 else n * factorial(n-1)
 
-  def sqrtIter(guess: Double, x: Double): Double =
-    if (isGoodEnough(guess, x)) guess
-    else sqrtIter(improve(guess, x), x)
+  // Factorial (tail-recursive)
+  def factorial_tail(n: Int): Int = {
+    def loop(acc: Int, n: Int): Int =
+      if (n == 0) acc
+      else loop(acc*n, n-1)
+    loop(1, n)
+  }
 
-  def sqrt(x: Double) = sqrtIter(1.0, x)
+  def sqrt(x: Double) = { // uses a block. Blocks are themselves expressions in Scala
+    def isGoodEnough(guess: Double) =
+      abs(guess * guess - x) / x < 0.001
 
-  sqrt(2)
-  sqrt(4)
-  sqrt(1e-6)
-  sqrt(1e50)
+    def improve(guess: Double) =
+      (guess + x / guess) / 2
+
+    def sqrtIter(guess: Double): Double =
+      if (isGoodEnough(guess)) guess
+      else sqrtIter(improve(guess))
+
+    sqrtIter(1.0)
+  }
 
 }
+
