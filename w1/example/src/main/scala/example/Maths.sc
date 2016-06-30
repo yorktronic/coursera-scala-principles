@@ -1,7 +1,7 @@
 /* This file contains practice code for week 1 */
 
 object session {
-  // Square root function using the Newtonian method
+  // Absolute value
   def abs(x: Double) = if (x < 0) -x else x
 
   // Greatest common denominator using Euclidian method
@@ -20,6 +20,7 @@ object session {
     loop(1, n)
   }
 
+  // Square root using Newtonian method
   def sqrt(x: Double) = { // uses a block. Blocks are themselves expressions in Scala
     def isGoodEnough(guess: Double) =
       abs(guess * guess - x) / x < 0.001
