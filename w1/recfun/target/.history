@@ -1,0 +1,14 @@
+compile
+scala
+pascal(1,3)
+import recfun._
+run
+compile
+run
+compile
+run
+exit
+compile
+run
+compile
+run
