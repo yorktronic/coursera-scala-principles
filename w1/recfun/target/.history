@@ -12,3 +12,11 @@ compile
 run
 compile
 run
+compile
+import recfun._
+balance((a,b,c,(,)))
+scala
+run
+test
+compile
+test
