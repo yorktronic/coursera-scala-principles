@@ -1,0 +1,6 @@
+# files in the .idea directory #
+################################
+
+workspace.xml
+tasks.xml
+*.iml
