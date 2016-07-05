@@ -60,7 +60,7 @@ object exercise4 {
   def product(f: Int => Int): (Int, Int) => Int = {
     def productF(a: Int, b: Int): Int =
       if (a > b) 1
-      else f(a) * productF(a + 1, b)
+      else f(a) * productF(a + 1, b) // f(a) can also be just a in this case (I guess the instructor used f(a) to deliberately confuse me?)
     productF
   }
   def fact(x: Int): Int = product(x => x)(1, x)

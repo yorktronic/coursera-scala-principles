@@ -1,29 +1,52 @@
 /*
- * Exploring ways of storing data in Scala
- */
-
-object rationals {
-  val x = new Rational(1,2)
-  val y = new Rational(2, 3)
-}
-
-/*
- * Rational is type in this case that is a fraction
+ * A Rational is a fraction
  * Scala keeps the names of types and values in different namespaces.
  * So, there's no conflict between the two definitions of Rational
  */
 class Rational(x: Int, y: Int) {
-  def numer = x
-  def denom = y
+
+  // Greatest common denominator (GCD) function
+  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  private val g = gcd(x, y)
+
+  // Numerator and denominator (automatically reduced to gcd)
+  def numer = x / g
+  def denom = y / g
+
+  /*
+   * Could also be represented as the following so that numer and denom are computed only once
+   *
+   * val numer = x / gcd(x, y)
+   * val denom = y / gcd(x, y)
+   *
+   * This would be advantageous if numer and denom were called very often
+   */
+
+  // Gets the negative of a rational
+  def neg: Rational = new Rational(-numer, denom)
+
+  // Adds two Rationals
+  def add(that: Rational) =
+    new Rational(
+      numer * that.denom + that.numer * denom,
+      denom * that.denom)
+
+  // Subtracts a passed in rational from a rational
+  def sub(that: Rational) = add(that.neg)
+
+  // Pretty prints rationals
+  override def toString = numer + "/" + denom // need the override since we override the method built-in to Scala
+
 }
 
-// Adds two rationals together and returns the result
-def addRational(r: Rational, s: Rational): Rational =
-  new Rational(
-    r.numer * s.denom + s.numer * r.denom,
-    r.denom * s.denom)
 
-def makeString(r: Rational) =
-  r.numer + "/" + r.denom
+object rationals {
+  val x = new Rational(1, 3)
+  val y = new Rational(5, 7)
+  val z = new Rational(189, 23)
+}
 
-makeString(addRational(rationals.x, rationals.y))
+"Subtracting " + rationals.x.toString + " from " + rationals.z.toString + " = " + rationals.z.sub(rationals.x).toString
+
+
+
