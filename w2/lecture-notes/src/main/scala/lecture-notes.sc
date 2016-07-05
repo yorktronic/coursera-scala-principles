@@ -41,8 +41,12 @@ object exercise3 {
       else f(a) + sumF(a + 1, b)
     sumF
   }
+  def sumInts = sum(x => x)
+  def sumCubes = sum(x => x * x * x)
+  def sumFactorials = sum(fact)
+  def fact(x: Int): Int = if (x == 0) 1 else x * fact(x - 1)
 }
 
-
+exercise3.sumInts(1, 2)
 
 
