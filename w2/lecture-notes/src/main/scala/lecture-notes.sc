@@ -45,8 +45,12 @@ object exercise3 {
   def sumCubes = sum(x => x * x * x)
   def sumFactorials = sum(fact)
   def fact(x: Int): Int = if (x == 0) 1 else x * fact(x - 1)
+  def cube(x: Int): Int = x * x * x
 }
 
-exercise3.sumInts(1, 2)
+exercise3.sumCubes(1, 5)
+exercise3.sum (cube) (1, 5)
+exercise3.sum (cube) (1, 5) == (exercise3.sum (cube)) (1, 5)
+
 
 
