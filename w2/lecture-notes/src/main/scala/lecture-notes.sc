@@ -23,16 +23,25 @@ sumFactorials(4, 8)
 def sumInts_anonymous(a: Int, b: Int) = sum(x => x, a, b)
 def sumCubes2_anonymous(a: Int, b: Int) = sum (x => x * x * x, a, b)
 
-def sum_tail_recursive(f: Int => Int, a: Int, b: Int): Int = {
-  def loop(a: Int, acc: Int): Int =
-    if (a > b) acc
-    else loop(a + 1, f(a) + acc)
-  loop(a, 0)
+object exercise2 {
+  def sum(f: Int => Int, a: Int, b: Int): Int = {
+    def loop(a: Int, acc: Int): Int =
+      if (a > b) acc
+      else loop(a + 1, f(a) + acc)
+    loop(a, 0)
+  }
 }
 
-sum_tail_recursive(x => x * x, 1, 3)
+exercise2.sum(x => x * x, 1, 3)
 
-
+object exercise3 {
+  def sum(f: Int => Int): (Int, Int) => Int = { // sum is now a function that returns another function
+    def sumF(a: Int, b: Int): Int =
+      if (a > b) 0
+      else f(a) + sumF(a + 1, b)
+    sumF
+  }
+}
 
 
 
